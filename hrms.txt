@@ -1,0 +1,144 @@
+
+create database hrm;
+create table users(
+	id int(10)  auto_increment  primary key,
+	name varchar(25) not null,
+	email varchar(30) not null,
+	contact varchar(12) not null,
+	type tinyint not null,
+	picture varchar(4) not null,
+	password varchar(32) not null,
+	role_id int(10),
+	unique key(email)
+);
+create table role(
+	id int(10) unsigned not null auto_increment primary key,
+	name varchar(20) not null,
+		
+);
+
+create table employee(
+	id int(10)  auto_increment primary key,
+	name varchar(30) not null,
+	email varchar(30) not null,
+ 	picture varchar(4) not null,
+	contact varchar(12) not null,
+	address varchar(100) not null,
+	join_date datetime not null,
+	status tinyint(3) unsigned  not null,
+	position_id int(10) not null,
+	password varchar(32) not null,
+	user_id int(10) not null,
+	unique key (email)
+	
+);
+
+create table department(
+	id int(10)  auto_increment primary key,
+	title varchar(30) not null,
+	description varchar(255) not null,
+	unique key (title)
+);
+
+create table position(
+ id int(10) auto_increment primary key,
+ position_name varchar(30) not null,
+ dept_id int(10).
+
+
+)
+create table emp_salary_config(
+	id int(10) auto_increment primary key,
+	head_id int(10) not null,
+	amount float(8,2) not null,
+	employee_id int(10) not null	
+);
+create table salary_trans(
+	id int(10) auto_increment primary key,
+	admin_id int(10) not null,
+	payment_date datetime not null,
+	bill_date datetime not null,
+	amount float(8,2) not null,
+	remark varchar(50),
+	head_id int(10) not null,
+	emp_id int(10) not null	
+);
+create table payroll_head(
+	id int(10)  auto_increment primary key,
+	name varchar(30) not null,
+	type tinyint(2)	
+);
+
+create table leave_config(
+	id int(10)  auto_increment primary key,
+	category_id int(10) not null,
+	emp_id int(10) not null,
+	days int(10)	
+);
+create table leave_category(
+	id int(10)  auto_increment primary key,
+	name varchar(50) not null
+	
+);
+create table emp_attendance_config(
+	id int(10)  auto_increment primary key,
+	emp_id int(10) not null,
+	has_ot tinyint(1) default 0,
+	in_time time not null,
+	out_id time not null,
+	week_day varchar(30)
+	
+);
+create table attendance_trans(
+	id int(10)  auto_increment primary key,
+	emp_id int(10)  not null,
+	in_time datetime not null,
+	out_time datetime not null,
+	type tinyint(3) not null
+
+);
+
+create table emp_leave_trans(
+	id int(10)  auto_increment primary key,
+	emp_id int(10) not null,
+	reason_id int(10) not null,
+	leave_cat_id int(10) not null,
+	emp_remark varchar(MAX),
+	admin_remark varchar(MAX),
+	admin_id int(10) not null,
+	from_date date not null,
+	to_date date not null
+	
+);
+create table leave_reason(
+	id int(10)  auto_increment primary key,
+	name varchar(50) not null
+);
+
+create table leave_application(
+	id int(10)  auto_increment primary key,
+	leave_cat_id int(10) not null,
+	emp_id int(10)  not null,
+	start_date datetime not null,
+	end_date datetime not null,
+	reason_id int(10) not null,
+	emp_remark varchar(MAX),
+	leave_sataus_id int(10) not null
+	
+);
+create table perforance_factor(
+	id int(10)  auto_increment primary key,
+	name varchar(30) not null
+	
+);
+
+
+create table perforance(
+	id int(10)  auto_increment primary key,
+	employee_id int unsigned not null,
+	factor_id int(10) not null, 
+	rateing int(10) not null,
+	remark varchar(10)
+);
+
+
